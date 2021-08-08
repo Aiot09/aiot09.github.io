@@ -40,6 +40,46 @@ function Member(){
 		                		</Col>
 	                		</Row>
 	                	</div>
+						<div className="memberSection">
+	                		<Row>
+		                		<Col md={4} className="avatarSection">
+		                			<p>許凱榛</p>
+		                		</Col>
+		                		<Col md={8} className="memberIntro">
+		                			<p className="introTitle">負責部分</p>
+		                		</Col>
+	                		</Row>
+	                	</div>
+						<div className="memberSection">
+	                		<Row>
+		                		<Col md={4} className="avatarSection">
+		                			<p>許凱榛</p>
+		                		</Col>
+		                		<Col md={8} className="memberIntro">
+		                			<p className="introTitle">負責部分</p>
+		                		</Col>
+	                		</Row>
+	                	</div>
+						<div className="memberSection">
+	                		<Row>
+		                		<Col md={4} className="avatarSection">
+		                			<p>許凱榛</p>
+		                		</Col>
+		                		<Col md={8} className="memberIntro">
+		                			<p className="introTitle">負責部分</p>
+		                		</Col>
+	                		</Row>
+	                	</div>
+						<div className="memberSection">
+	                		<Row>
+		                		<Col md={4} className="avatarSection">
+		                			<p>許凱榛</p>
+		                		</Col>
+		                		<Col md={8} className="memberIntro">
+		                			<p className="introTitle">負責部分</p>
+		                		</Col>
+	                		</Row>
+	                	</div>
 	                </div>
                 </motion.div>
             </Container>
