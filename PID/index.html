@@ -141,11 +141,49 @@
 							</article>
 						<article id="process">
 								<h2 class="major">呈現對照</h2>
+								1.先從主要架構上說明<br>
+								Import package<br>
+								Method block<br>
+								Initialization<br>
+								Main function<br>
+    						母代runResult( … ) <br>
+    						Selection / 輪盤法 / Crossover<br>
+    						子代runResult( … )<br>
+								reproduction( … )<br>
+								Mutation<br>
+								2.內部方法<br>
+								fitnessC(目標): 將回傳數據正規化 / 計算Fitness<br>
 								<span class="image main"><img src="images/mainprogram/1fitnessC.jpg" alt="" /></span>
+								getNG(目標 ,欄位 ,幾個):取得Array某column值最大的index array, N個
+								getNGS(目標 ,欄位 ,幾個): 取得Array某column值最小的index array, N個
 								<span class="image main"><img src="images/mainprogram/2getNGS.png" alt="" /></span>
+								reProduction(母 ,母適性 ,子 ,子適性 ,被取代Index ,哪個子): 子代取代母代
 								<span class="image main"><img src="images/mainprogram/3reproduction.jpg" alt="" /></span>
+								mutation(母 ,突變的Index ,哪段 ,怎麼變 ,突變機率): 依result某值做突變
 								<span class="image main"><img src="images/mainprogram/4mutation.jpg" alt="" /></span>
+								runResult(目標 ,目標適性): 將PID丟入OS得到result，並將result存入Array
 								<span class="image main"><img src="images/mainprogram/5runresult.jpg" alt="" /></span>
+								呈現與對照：
+調整的循環
+挑選邏輯 ←→ 交配邏輯 ←→ Fitness權重 ←→ 數據正規化
+PID數據input &output
+版本        PID值                    調整重點
+Default    PID( 0 , 0 , 0 )                --
+見山是山
+V2        PID( 8.95 , 27.32 , 9.61 )        單點交配 / Fitness + Fanduty(55+30)
+V3~V6    PID( 6.02 , 39.62 , 8.61 )        兩點交配 / Selection
+V7        PID( 8.08 , 27.18 , 10.60 )    兩點交配 / Fitness權重 / Fanduty_avg
+見山不是山
+V8~V10    亂掉
+
+Elite版    返璞歸真 (由V2概念著手)
+強特徵：Pwr / Fanduty(<40) / MaxErr  重新正規化
+Round 10:    PID( 8.33 , 26.83 , 9.22 )    ?
+            PID( 7.32 , 31.20 , 9.76 )    ?     fit最優
+Round 20:    PID( 7.48 , 24.91 , 7.86 )
+
+12分鐘的測試Loading : 75% – 88% – 24% – 96% – 67% – 55%
+
 
 								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
 							</article>
