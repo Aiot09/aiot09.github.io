@@ -31,7 +31,7 @@
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#intro">專題概述</a></li>
+								<li><a href="#into">專題概述</a></li>
 								<li><a href="#member">團隊介紹</a></li>
 								<li><a href="#about">問題分析</a></li>
 								<li><a href="#method">主程式設計</a></li>
@@ -49,47 +49,91 @@
 					<div id="main">
 
 						<!-- Intro -->
-							<article id="intro">
+							<article id="into">
 								<h2 class="major">專題介紹</h2>
 								<span class="image main"><img src="images/Pid.png" alt="" /></span>
-								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+								<h1>找到最佳值，達到完美曲線</h1>
+								<p>我們在技嘉的系統下，試圖找出最佳的pid值，控制風扇的轉動。
+									目標是用PID控制器，來控制伺服器內的風扇進而達到控溫、節能…等效果。
+									將設定CPU溫度為83度的高溫下，用PID控制風扇，要達到
+									伺服器跑一段時間的負載測試後，觀察以下測試項目:
+									I) 	CPU 平均誤差---------------低
+									II)	CPU 最高溫度---------------低
+									III)風扇震盪-------------------小
+									IX)	風扇電源消耗改善率-----------高
+
+								</p>
 							</article>
 
 						<!-- Work -->
 							<article id="member">
 								<h2 class="major">團隊介紹</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								許凱榛<p>負責部分
-								</p>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								楊培琳<p>負責部分
-								</p>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-
-								李庭侃<p>負責部分
-								</p>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								游智傑<p>負責部分
-								</p>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								姚宣羽<p>負責部分
-								</p>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								鄧家瑄<p>負責部分
-								</p>
+								<span class="image main"><img src="images/member/1.jpg" alt="" onload="resizeImage(this)"/></span>
+								<span class="image main"><img src="images/member/2.jpg" alt="" /></span>
+								<span class="image main"><img src="images/member/3.jpg" alt="" /></span>
+								<span class="image main"><img src="images/member/4.jpg" alt="" /></span>
+								<span class="image main"><img src="images/member/5.jpg" alt="" ></span>
+								<span class="image main"><img src="images/member/6.jpg" alt=""/></span>
 							</article>
 
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">問題分析</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<h2>什麼是PID?</h2>
+								<span class="image main"><img src="images/Pid.png" alt="" /></span>
+								<p>PID控制器，是由比例（Proportional)、積分（Integral）和微分（Derivative）組成。
+									依照Kp、Ki、Kd三個值特性，調整出適合系統的控制器。<br>
+									現代工業中，PID控制應用中常見的反饋迴路部件。這個控制器把收集到的數據和一個參考值進行比較，
+									然後把這個差別用於計算新的輸入值，這個新的輸入值的目的是可以讓系統的數據達到或者保持在參考值。
+									PID控制器可以根據歷史數據和差別的出現率來調整輸入值，使系統更加準確而穩定。<br>
+									PID控制器的比例(P)、積分(I)和微分(D)分別對應目前誤差(Err)、過去累計誤差及未來誤差。
+									當被控對象的結構和參數無法完全掌握，或得不到精確的數學模型時，其它控制理論的設計技術難以使用。故系統的控制器的結構和參數，就必須依靠經驗和現場調試來確定，
+									此時，最適合用PID控制技術進行設計。
+									藉由調整PID控制器的三個參數，可以調整控制系統，設法滿足設計需求。
+									結構簡單、穩定性好、工作可靠及調整方便，而成為工業控制一項可靠的技術工具。
+									控制器的響應可以用控制器對誤差的反應快慢、控制器過衝的程度及系統震盪的程度來表示。
+									不過使用PID控制器不一定保證可達到系統的最佳控制，也不保證系統穩定性。 <br>
+									有些應用只需要PID控制器的部份值，可以將不需要值的參數設為零即可。
+									因此PID控制器可以變成PI控制器、PD控制器、P控制器或I控制器。
+									其中又以PI控制器比較常用，因為D控制器對回授雜訊十分敏感，而若沒有I控制器的話，系統不會回到參考值，會存在一個誤差量。<br>
+
+								</p>
+								<h2>Kp、Ki、Kd三個值到底要怎麼調整？</h2>
+								<p>
+									我們這邊有個小程式，可以供大家先自行操作看看。<a href="https://aiot09.github.io/pid-demo/docs/" style="color:yellow">請點我</a><br>
+									<span class="image main"><img src="images/pidformula.jpg" alt="" /></span>
+									P值：比例（Proportional)為目標值跟Err值的比例。但隨著比例越來越小，發現它很難穩定在目標值上面。<br>
+									I值：積分（Integral）為目標值跟Err值有落差，它將會做積分，達到目標值為止。但是控制上的不是太穩定，因此它也是常常延遲因素之一。<br>
+									D值：微分（Derivative）為目標值跟Err值做微分，改善震盪。但是值過大(過衝)，或是外在因素，也可能導致它完全無法漸少震盪效果。<br>
+									<span class="image main"><img src="images/method/KPID.png" alt="" /></span>
+									我們找尋多方資料，找尋不同的調參數方法。經過我們多方比較，擷取我們想要的部分。以下是不同的調參數方法比較。
+									<span class="image main">Ziegler-Nichols（最為大家所知的）<img src="images/method/zn.png" alt="" width="50%"/></span>
+									優點：簡單、直觀、需要少量的相關知識。<br>
+									缺點：在封閉式迴路，最大超過25%將過衝，強烈震盪。因為是經驗推導，所以會有偏差，沒有辦法直接套用在所有狀況下。實機利用臨界感度危險。<br>
+									<span class="image main">CC（為ZN的改良版）<img src="images/method/cc.png" alt="" width="50%"/></span>
+									優點：擁有ZＮ的優點，並且適用於延遲較大的系統。<br>
+									缺點：不穩定，容易整個值偏掉。<br>
+									<span class="image main">CHR（為ZN的改良版）<img src="images/method/CHR.png" alt="" width="50%"/></span>
+									優點：允許帶有較大的阻尼、沒有超越量的最快速響應，並且設定帶有 %20 超越量的最快速響應。過衝小。<br>
+									缺點：非所有情況都可以使用。<br>
+									<span class="image main">Kappa-tau（為ZN的改良版）<img src="images/method/Kappa-tau.png" alt="" width="50%"/></span>
+									優點：較小的震盪、可實現無過衝最佳的壓抑干擾。<br>
+									缺點：無法控制目標以及封閉系統。<br>
+									<span class="image main">Lambda<img src="images/method/Lambda.png" alt="" width="50%"/></span>
+									優點：在封閉系統中，選擇穩定值，可知道響應多塊的速度。<br>
+									缺點：僅可以使用在PI值得調參上面。<br>
+
+								</p>
 							</article>
 						<article id="method">
 								<h2 class="major">主程式設計</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<h2>介紹GA演算法</h2>
+								<p>基因演算法是一種受到自然選擇(natural selection)機制所啟發的演算法。
+									自然選擇解釋生物如何適應環境，基於生物中個體的某種優勢或劣勢，導致生存能力存在差異，進而影響繁殖能力，使得特徵逐漸被保存或者淘汰。
+									基因演算法便是在模擬自然選擇的機制，將解比擬成一條染色體(chromosome)，模仿生物學中交配(crossover)、突變(mutation)等現象，
+									並根據適應度(fitness)的高低，決定染色體的去留，達到去蕪存菁的效果。</p>
+								<h2>變形蟲的迭代概念</h2>
+
 							</article>
 						<article id="process">
 								<h2 class="major">呈現對照</h2>
