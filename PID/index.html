@@ -107,10 +107,10 @@
 									D值：微分（Derivative）為目標值跟Err值做微分，改善震盪。但是值過大(過衝)，或是外在因素，也可能導致它完全無法漸少震盪效果。<br>
 									<span class="image main"><img src="images/method/KPID.png" alt="" /></span>
 									我們找尋多方資料，找尋不同的調參數方法。經過我們多方比較，擷取我們想要的部分。以下是不同的調參數方法比較。
-									<span class="image main">Ziegler-Nichols（最為大家所知的）<img src="images/method/zn.png" alt="" width="50%"/></span>
+									<span class="image main">Ziegler-Nichols（最為大家所知的）<img src="images/method/ZN.png" alt="" width="50%"/></span>
 									優點：簡單、直觀、需要少量的相關知識。<br>
 									缺點：在封閉式迴路，最大超過25%將過衝，強烈震盪。因為是經驗推導，所以會有偏差，沒有辦法直接套用在所有狀況下。實機利用臨界感度危險。<br>
-									<span class="image main">CC（為ZN的改良版）<img src="images/method/cc.png" alt="" width="50%"/></span>
+									<span class="image main">CC（為ZN的改良版）<img src="images/method/CC.png" alt="" width="50%"/></span>
 									優點：擁有ZＮ的優點，並且適用於延遲較大的系統。<br>
 									缺點：不穩定，容易整個值偏掉。<br>
 									<span class="image main">CHR（為ZN的改良版）<img src="images/method/CHR.png" alt="" width="50%"/></span>
