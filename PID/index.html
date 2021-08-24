@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>PID</title>
@@ -105,8 +100,12 @@
 									P值：比例（Proportional)為目標值跟Err值的比例。但隨著比例越來越小，發現它很難穩定在目標值上面。<br>
 									I值：積分（Integral）為目標值跟Err值有落差，它將會做積分，達到目標值為止。但是控制上的不是太穩定，因此它也是常常延遲因素之一。<br>
 									D值：微分（Derivative）為目標值跟Err值做微分，改善震盪。但是值過大(過衝)，或是外在因素，也可能導致它完全無法漸少震盪效果。<br>
-									<span class="image main"><img src="images/method/KPID.png" alt="" /></span>
 									我們找尋多方資料，找尋不同的調參數方法。經過我們多方比較，擷取我們想要的部分。以下是不同的調參數方法比較。
+									<span class="image main"><img src="images/method/vs.png" alt="" /></span>
+									以下是提供，調參數的數值。
+									<span class="image main">Heuristic Tuning試誤法<img src="images/method/KPID.png" alt="" /></span>
+									優點：快速、便捷。直接調整測試。<br>
+									缺點：費時<br>
 									<span class="image main">Ziegler-Nichols（最為大家所知的）<img src="images/method/ZN.png" alt="" width="50%"/></span>
 									優點：簡單、直觀、需要少量的相關知識。<br>
 									缺點：在封閉式迴路，最大超過25%將過衝，強烈震盪。因為是經驗推導，所以會有偏差，沒有辦法直接套用在所有狀況下。實機利用臨界感度危險。<br>
@@ -122,7 +121,12 @@
 									<span class="image main">Lambda<img src="images/method/Lambda.png" alt="" width="50%"/></span>
 									優點：在封閉系統中，選擇穩定值，可知道響應多塊的速度。<br>
 									缺點：僅可以使用在PI值得調參上面。<br>
-
+								</p>
+								<h2>PID回饋系統</h2>
+								<span class="image main"><img src="images/method/feed-forwardcontrol.png" alt="" width="50%"/></span>
+								<p>如圖，在封閉系統裡，PID擁有回饋系統。因此，當無人機因為外力的干擾，但因為有回饋系統，讓無人機可以不斷修正，達到目標值。
+								<span class="image main"><img src="images/method/dbpid.png" alt="" width="50%"/></span>
+								據我們的了解，應該是需要雙PID系統。
 								</p>
 							</article>
 						<article id="method">
@@ -137,13 +141,18 @@
 							</article>
 						<article id="process">
 								<h2 class="major">呈現對照</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<span class="image main"><img src="images/mainprogram/1fitnessC.jpg" alt="" /></span>
+								<span class="image main"><img src="images/mainprogram/2getNGS.png" alt="" /></span>
+								<span class="image main"><img src="images/mainprogram/3reproduction.jpg" alt="" /></span>
+								<span class="image main"><img src="images/mainprogram/4mutation.jpg" alt="" /></span>
+								<span class="image main"><img src="images/mainprogram/5runresult.jpg" alt="" /></span>
+
 								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
 							</article>
 						<article id="framework">
 								<h2 class="major">實務歷程</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<p>我們花了大量的時間研究，閱讀中英日的論文跟研究，了解PID的結構，並努力的想要打造一個可以取得好的值。</p>
 							</article>
 
 						<article id="results">
@@ -175,13 +184,13 @@
 									<h4>Preformatted</h4>
 									<pre><code>i = 0;
 
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
+										while (!deck.isInOrder()) {
+    								print 'Iteration ' + i;
+    								deck.shuffle();
+    								i++;
+									}
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+										print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</section>
 
 								<section>
