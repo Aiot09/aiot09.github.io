@@ -31,7 +31,7 @@
 								<li><a href="#about">問題分析</a></li>
 								<li><a href="#method">主程式設計</a></li>
 								<li><a href="#process">呈現對照</a></li>
-								<li><a href="#framework">實務歷程</a></li>
+								<li><a href="#framework">實作歷程</a></li>
 								<li><a href="#results">總結與展望</a></li>
 
 
@@ -46,18 +46,23 @@
 						<!-- Intro -->
 							<article id="into">
 								<h2 class="major">專題介紹</h2>
-								<span class="image main"><img src="images/Pid.png" alt="" /></span>
 								<h1>找到最佳值，達到完美曲線</h1>
-								<p>我們在技嘉的系統下，試圖找出最佳的pid值，控制風扇的轉動。
+								<p>感謝技嘉提供我們這個題目。
+									此次題目讓我們學習甚多。 試圖找出最佳的pid值，控制風扇的轉動。
 									目標是用PID控制器，來控制伺服器內的風扇進而達到控溫、節能…等效果。
-									將設定CPU溫度為83度的高溫下，用PID控制風扇，要達到
-									伺服器跑一段時間的負載測試後，觀察以下測試項目:<br>
-									I) 	CPU 平均誤差---------------低<br>
-									II)	CPU 最高溫度---------------低<br>
-									III)風扇震盪-------------------小<br>
-									IX)	風扇電源消耗改善率-----------高<br>
+									將設定CPU溫度為83度的高溫下，用PID控制風扇，伺服器跑一段時間的負載測試後，觀察以下測試項目:<br>
+									I) 	CPU 平均誤差<span style="color:orange;">低</span><br>
+									II)	CPU 最高溫度<span style="color:orange;">低</span><br>
+									III)風扇震盪<span style="color:orange;">小</span><br>
+									IX)	風扇電源消耗改善率<span style="color:orange;">高</span><br>
+									<br>
+									如果以一台伺服器，一天可以節省100Ｗ，一個月就也省3000W，一年就36KW。
+									一度2塊錢來算，一年一台72元，感覺沒有很多。以一個機房一個機櫃少說10台，100台機櫃，一年剩下72000元。
+									要如何有效地控制系統呢？那就有我們下來一一解說。 
 
 								</p>
+								<span class="image main"><img src="images/datacenter.jpg" alt="" /></span>
+
 							</article>
 
 						<!-- Work -->
@@ -100,9 +105,10 @@
 									P值：比例（Proportional)為目標值跟Err值的比例。但隨著比例越來越小，發現它很難穩定在目標值上面。<br>
 									I值：積分（Integral）為目標值跟Err值有落差，它將會做積分，達到目標值為止。但是控制上的不是太穩定，因此它也是常常延遲因素之一。<br>
 									D值：微分（Derivative）為目標值跟Err值做微分，改善震盪。但是值過大(過衝)，或是外在因素，也可能導致它完全無法漸少震盪效果。<br>
-									我們找尋多方資料，找尋不同的調參數方法。經過我們多方比較，擷取我們想要的部分。以下是不同的調參數方法比較。
+									我們找尋多方資料，找尋不同的調參數方法。<br>
+									經過我們多方比較，擷取我們想要的部分。以下是不同的調參數方法比較。<br>
 									<span class="image main"><img src="images/method/vs.png" alt="" /></span>
-									以下是提供，調參數的數值。
+									以下是提供，調參數的數值。<br>
 									<span class="image main">Heuristic Tuning試誤法<img src="images/method/KPID.png" alt="" /></span>
 									優點：快速、便捷。直接調整測試。<br>
 									缺點：費時<br>
@@ -124,19 +130,50 @@
 								</p>
 								<h2>PID回饋系統</h2>
 								<span class="image main"><img src="images/method/feed-forwardcontrol.png" alt="" width="50%"/></span>
-								<p>如圖，在封閉系統裡，PID擁有回饋系統。因此，當無人機因為外力的干擾，但因為有回饋系統，讓無人機可以不斷修正，達到目標值。
+								<p>它是一個控制的系統，它也有開迴路系統，但我們是利用的閉迴路系統。差別在下面著個感測器這部分，可以感測去修正。 
 								<span class="image main"><img src="images/method/dbpid.png" alt="" width="50%"/></span>
-								據我們的了解，應該是需要雙PID系統。
+								在我們瞭解上，技嘉這系統應該是雙迴路系統。內部迴路是控制pid風扇的轉速，回授回來的是cpu的溫度。
 								</p>
+								<h2> 為什麼要選GA？</h2>
+								<p>我們透過多方比較許多方法，需要將方法轉寫成程式碼。
+									所以我們必須要找到一個適合的演算法帶入。了解系統後，我們認為在時間有限的範圍內，
+									GA相對是可以達到找到最準確的值。由於我們的GA演算法是由我們自行撰寫，因此，它可以調控的相較其他的大。
+									可以配合需要的，取調整更適合的參數達到抓到適合得值。</p>
 							</article>
 						<article id="method">
 								<h2 class="major">主程式設計</h2>
-								<h2>介紹GA演算法</h2>
-								<p>基因演算法是一種受到自然選擇(natural selection)機制所啟發的演算法。
-									自然選擇解釋生物如何適應環境，基於生物中個體的某種優勢或劣勢，導致生存能力存在差異，進而影響繁殖能力，使得特徵逐漸被保存或者淘汰。
-									基因演算法便是在模擬自然選擇的機制，將解比擬成一條染色體(chromosome)，模仿生物學中交配(crossover)、突變(mutation)等現象，
-									並根據適應度(fitness)的高低，決定染色體的去留，達到去蕪存菁的效果。</p>
-								<h2>變形蟲的迭代概念</h2>
+								<h2>GA是什麼？</h2>
+								<p>要撰寫GA演算法前，我們需要知道GA是什麼？
+									基因演算法(Genetic Algorithms , GAs)是一種應用自然界中淘汰和演化的觀念所發展出的演化搜尋法。
+									基因演算法的理論乃根據1859年達爾文的「進化論」所發展出的「物競天擇，適者生存」的演化及淘汰的觀念。
+									所有物種，在自然的環境的考驗下，適應性強的物種逐漸生存下來，而適應性差的便逐漸被淘汰。
+									將這種自然界的選擇方法系統化並發展一可用之模式最早是由密西根大學的John Holland 教授在1975年於Adaption in Natural and Artificial System
+									文中所提出，發展出基因演算法搜尋技術的基本架構，並且由其學生David Goldberg 成功地運用在工程問題上。
+									之後，有許多研究亦證實了基因演算法在最佳化問題的求解上是十分有效率的，其有以下幾個優點: <br>
+ 										1 . 其可優選連續(continuous)及不連續(discrete)的參數。 <br>
+ 2 . 在優選的過程中，不需要求得目標函數的導數。<br>
+									3 . 搜尋的方式不同於以往的單點搜尋方式，而是採用多點搜尋， 因此不容易掉入局部解(local optimum)。<br>
+									4 . 可以處理多參數的優選問題。 <br>
+									5 . 具有隱平行運算的能力，若在平行電腦中，可大量解省運算 的時間。 <br>
+									6 . 在優選複雜非線性的問題中，其演算機制可跳脫局部最佳解 (local optimum)。 <br>
+									7 . 演算優選的結果，可提供一組最佳解，而非只有單一最佳解。 <br>
+									8 . 參數優選需經由解碼的過程，而整個演算的機制是在解碼後 的參數集合中進行，不是在參數集合本身，因此演算的機制 不受問題函數型能的影響。<br>
+									以上的優點，使得我們發現當傳統的最佳化方法無法解決一個問題或得到令人滿意的優選結果時，
+									基因演算法便是一個很有趣且擁有很大潛力去替代部份傳統的優選法。 對所有的問題而言，基因演算法並非都是一個最佳的方法，
+									例如當在處理一具有凸函數型態，且僅有少量變數之問題時，一般傳統以微積分為基礎的搜尋法，即可比基因演算法快速的找到最佳解，
+									別外一些簡單優選的問題，傳統的演算法亦都能很快的解決，然而當我們在處理實際的問題時，經常會遇見的是非凸函數且多變數型態或更複雜的問題，
+									這是一般演算法不易解決的，而基因演算法就有解決此類問題的能力，且可得到近似全域最佳解。<br>
+									挑選-複製-交配-取代-突變-適性再回到挑選，反覆迭代。優良的子代去替代母代，為了不要無限循環，
+									所以我們放入了突變，讓母代突變，讓它不會落入死區，無法找到更好的值。然後我們可以用特徵方式，去選出我們想要的值。
+									</p>
+								<h2>我們所撰寫的GA概念</h2>
+								<p>我們以Power Consumption 挑選 [ Kp ]，再以Fan Duty挑選 [ Ki Kd ]，最後再以Fitness使用輪盤法選取。
+								將複製好的[ Kp ] & [ Ki Kd ]給子代，產生3條子代，子代Update Fitness陣列後，
+								優於母代就取代掉。挑選PWR不優的母代 → 突變 [ Kp ]，挑選Fitness不優的母代 → 突變 [ Ki Kd ]。（突變率：0.7 / 0.4）
+							</p>
+								<h1>調參的迴圈</h1><br>
+								<h1>挑選邏輯 ←→ 交配邏輯 ←→ Fitness權重 ←→ 數據正規化</h1>
+
 
 							</article>
 						<article id="process">
@@ -188,260 +225,47 @@ Round 20:    PID( 7.48 , 24.91 , 7.86 )
 								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
 							</article>
 						<article id="framework">
-								<h2 class="major">實務歷程</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>我們花了大量的時間研究，閱讀中英日的論文跟研究，了解PID的結構，並努力的想要打造一個可以取得好的值。</p>
+								<h2 class="major">實作歷程</h2>
+								<p>這次專題，為技嘉將遇到的企業痛點，讓我們實際參與操作。期望我們能夠，
+									可以有所突破以及貢獻。除了題目上的挑戰外，因為疫情關係，我們同時也面對著遠端合作的練習。
+									起初，聽完技嘉方的需求提出時，我們尚未太了解其中內容。只知道要找值，然後可以達到調整電力以及風扇。由於我們都沒有機械相關背景，
+									在初期，找起資料上遇見滿多貧頸，難以辨別什麼是有用的資料文獻。經過多次討論，以及老師課堂的討論下，慢慢的有初步的了解。也在討論中，意外想到日本的工業很強，是否他們可能擁有同樣的痛點？因此得到不少資訊。
+								 <br>	<span style="color:red;">（時間剩下四週要發表）</span><br>
+										但時間的有限，老師的方向也有些模糊，因此我們決定依循技嘉的腳步，先執行GA去了解到底系統的運作。如果需要調整在做出其他調整。比起中套件，我們傾向於自己撰寫，因為考慮到套件的適用性問題。經過努力不懈下，寫出了第一版的程式碼，卻無法跑。大家連上線，一起debug。用短時間去試跑，終於成功跑動。因此我們思考的如果原本為6分鐘，我們改用3分鐘，是不是可能節省時間，並且可以增加迭代次數。同時依據結果不斷的調整參數，期望可以跑出更加理想的值。
+										同時間，我們也討論一部分的人去架設網站，因為報告時間30分鐘，能說明有限，可以讓有興趣的聽眾更加了解內容，也期望我們研究的文獻，可以對於未來技嘉工程師有所幫助。
+										<br>	<span style="color:red;">（時間剩下三週）</span><br>
+										我們的程式已經調整到相對滿意的狀況，希望藉由多次抓取可以得到好的結果。但意外技嘉遇到駭客事件，因此我們少了四天時間，可以跑。讓我們不禁有些緊張，會不會跑得值不夠理想。
+										<br>	<span style="color:red;">（時間剩下兩週）</span><br>
+										程式方面大概到一段落，我們面對的是彩排，必須準備報告的內容。此時，得知技嘉的設備，將轉移到資策會這邊。沒有時間去試不同的方法，但仍然擔心環境的改變，對於我們的設定上有所改變，因此我們也試跑了許多次，數值上有點差異，但趨向於好的走，因此對於我們的優化GA，我們更有信心。在準備報告上，我們也遇到了，到底怎麼說，可以讓聽眾可以有概念理解。
+										<br>	<span style="color:red;">（最後一週）</span><br>
+										我們不斷的修改希望可以達到更好的呈現。 </p><br>
+										<iframe width="560" height="315" src="https://www.youtube.com/embed/21wsur2xa64" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</article>
 
 						<article id="results">
 								<h2 class="major">總結與展望</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<p>
+									關關難過關關過，我們盡我們所能，努力達到目標，試圖解決技嘉的痛點。
+									從一開始的方向到底怎麼做，到後來慢慢找出可行性。
+									一路上，我們從一開始僅上課過一個月，但並非熟悉狀態下被選定一組，透過遠端方式做這個專案，在推進進度以及管理上，遇過許多麻煩。
+									後來的遇到駭客事件的意外，也讓我們覺得害怕無法預期完成。還有突然得知的機器環境移動，卻意外成為我們對我們的演算法更有信心的根源。
+									還有我們在中間，其實也一直在質疑，做GA是否是正確的方向？我們能做出來嗎？
+									然後意外看到圖下的文獻，讓我們更有信心完成。
+									<span class="image main"><img src="images/time.jpg" alt="" /></span>
+									以未來性，可將我們所做的優化GA轉換到強化學習上面。讓它可以達到自動選參的目標。<br>
+									最後，我們很榮幸有機會與技嘉合作，深深的感謝，副理以及林工程師的幫助，還有智慧電子學院以及資策會給予的資源。
+								</p>
 							</article>
 
 
 
-						<!-- Elements -->
-							<article id="elements">
-								<h2 class="major">Elements</h2>
 
-								<section>
-									<h3 class="major">Text</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h4>Blockquote</h4>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h4>Preformatted</h4>
-									<pre><code>i = 0;
 
-										while (!deck.isInOrder()) {
-    								print 'Iteration ' + i;
-    								deck.shuffle();
-    								i++;
-									}
 
-										print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-								</section>
 
-								<section>
-									<h3 class="major">Lists</h3>
 
-									<h4>Unordered</h4>
-									<ul>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
 
-									<h4>Alternate</h4>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
 
-									<h4>Ordered</h4>
-									<ol>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis viverra.</li>
-										<li>Felis enim feugiat.</li>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis lorem.</li>
-										<li>Felis enim et feugiat.</li>
-									</ol>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
-
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Table</h3>
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
-
-								<section>
-									<h3 class="major">Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Primary</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button primary disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Form</h3>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-											</div>
-											<div class="field half">
-												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-											</div>
-											<div class="field">
-												<label for="demo-category">Category</label>
-												<select name="demo-category" id="demo-category">
-													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="field">
-												<label for="demo-message">Message</label>
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</section>
-
-							</article>
 
 					</div>
 
